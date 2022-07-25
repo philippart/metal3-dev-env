@@ -14,4 +14,6 @@
         name: virtbmc
       vars:
         virtbmc_action: "teardown"
-
+  environment:
+    http_proxy: http://proxy.lbs.alcatel-lucent.com:8000
+    https_proxy: http://proxy.lbs.alcatel-lucent.com:8000

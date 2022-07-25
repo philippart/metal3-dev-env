@@ -11,3 +11,6 @@
       vars:
         go_version: 1.17.5
         go_install_clean: true
+  environment:
+    http_proxy: http://proxy.lbs.alcatel-lucent.com:8000
+    https_proxy: http://proxy.lbs.alcatel-lucent.com:8000

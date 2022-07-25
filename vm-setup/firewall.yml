@@ -6,3 +6,6 @@
   tasks:
     - import_role:
         name: firewall
+  environment:
+    http_proxy: http://proxy.lbs.alcatel-lucent.com:8000
+    https_proxy: http://proxy.lbs.alcatel-lucent.com:8000

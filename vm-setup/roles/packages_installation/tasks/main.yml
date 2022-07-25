@@ -1,4 +1,7 @@
 - name: Install packages on Ubuntu
+  environment:
+    http_proxy: http://proxy.lbs.alcatel-lucent.com:8000
+    https_proxy: http://proxy.lbs.alcatel-lucent.com:8000
   block:
     - name: Install required packages for Ubuntu
       include_tasks: ubuntu_required_packages.yml
@@ -47,6 +50,9 @@
   when: ansible_facts['distribution'] == "Ubuntu"
 
 - name: Install packages on CentOS/RHEL8
+  environment:
+    http_proxy: http://proxy.lbs.alcatel-lucent.com:8000
+    https_proxy: http://proxy.lbs.alcatel-lucent.com:8000
   block:
     - name: Install packages on CentOS/RHEL
       package:
@@ -68,6 +74,7 @@
       pip:
         executable: "pip3"
         name: "{{ packages.centos.pip3 }}"
+        extra_args: "--proxy http://proxy.lbs.alcatel-lucent.com:8000 --ignore-installed PyYAML"
         state: present
     - name: Install TPM emulator packages
       when: tpm_emulator|default(false)|bool

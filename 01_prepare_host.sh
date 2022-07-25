@@ -47,7 +47,8 @@ elif [[ $OS == "centos" || $OS == "rhel" ]]; then
   sudo ln -s /usr/bin/python3 /usr/bin/python || true
 fi
 
-sudo python -m pip install ansible=="${ANSIBLE_VERSION}"
+# sudo python -m pip install ansible=="${ANSIBLE_VERSION}"
+sudo python -m pip install --proxy=http://135.245.192.7:8000 ansible
 
 # NOTE(fmuyassarov) Make sure to source before runnig install-package-playbook.yml
 # because there are some vars exported in network.sh and used by
