@@ -278,7 +278,8 @@ done
 
 
 IRONIC_NODES_ENDPOINT="${IRONIC_URL}nodes"
-status="$(curl -sk -o /dev/null -I -w "%{http_code}" "${IRONIC_NODES_ENDPOINT}")"
+# LP avoid proxy
+status="$(curl -sk -o /dev/null -I -w "%{http_code}" "${IRONIC_NODES_ENDPOINT}" --noproxy "${CLUSTER_URL_HOST}")"
 if [[ $status == 200 ]]; then
     echo "⚠️  ⚠️  ⚠️   WARNING: Ironic endpoint is exposed for unauthenticated users"
     exit 1
