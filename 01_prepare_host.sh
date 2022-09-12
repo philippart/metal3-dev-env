@@ -48,7 +48,7 @@ elif [[ $OS == "centos" || $OS == "rhel" ]]; then
 fi
 
 # sudo python -m pip install ansible=="${ANSIBLE_VERSION}"
-sudo python -m pip install --proxy=http://135.245.192.7:8000 ansible
+sudo python -m pip install --proxy=http://proxy.lbs.alcatel-lucent.com:8000 ansible=="${ANSIBLE_VERSION}"
 
 # NOTE(fmuyassarov) Make sure to source before runnig install-package-playbook.yml
 # because there are some vars exported in network.sh and used by
