@@ -174,6 +174,7 @@ IRONIC_INSPECTOR_ENDPOINT=${IRONIC_INSPECTOR_URL}
 CACHEURL=http://${PROVISIONING_URL_HOST}/images
 IRONIC_FAST_TRACK=true
 RESTART_CONTAINER_CERTIFICATE_UPDATED="${RESTART_CONTAINER_CERTIFICATE_UPDATED}"
+IRONIC_RAMDISK_SSH_KEY=${SSH_PUB_KEY_CONTENT}
 EOF
 
   if [ -n "${DEPLOY_ISO_URL}" ]; then
@@ -339,6 +340,13 @@ function patch_clusterctl(){
   pushd "${CAPM3PATH}"
   mkdir -p "${HOME}"/.cluster-api
   touch "${HOME}"/.cluster-api/clusterctl.yaml
+
+  ## Remove these lines
+  ## This is hard-coded until we use clusterctl with cert-manager v1.9.1
+  cat << EOF | sudo tee "${HOME}/.cluster-api/clusterctl.yaml"
+cert-manager:
+  version: "v1.9.1" 
+EOF
 
   # At this point the images variables have been updated with update_images
   # Reflect the change in components files
