@@ -1,7 +1,8 @@
 - name: Install packages on Ubuntu
   environment:
-    http_proxy: http://proxy.lbs.alcatel-lucent.com:8000
-    https_proxy: http://proxy.lbs.alcatel-lucent.com:8000
+    http_proxy: http://135.245.48.34:8000
+    https_proxy: http://135.245.48.34:8000
+    no_proxy: 192.168.39.0/24,192.168.122.0/24,172.22.0.0/24,192.168.111.0/24,svc,helion-bld08,0.0.0.0,localhost
   block:
     - name: Install required packages for Ubuntu
       include_tasks: ubuntu_required_packages.yml
@@ -51,8 +52,9 @@
 
 - name: Install packages on CentOS/RHEL8
   environment:
-    http_proxy: http://proxy.lbs.alcatel-lucent.com:8000
-    https_proxy: http://proxy.lbs.alcatel-lucent.com:8000
+    http_proxy: http://135.245.48.34:8000
+    https_proxy: http://135.245.48.34:8000
+    no_proxy: 192.168.39.0/24,192.168.122.0/24,172.22.0.0/24,192.168.111.0/24,svc,helion-bld08,0.0.0.0,localhost
   block:
     - name: Install packages on CentOS/RHEL
       package:
@@ -74,7 +76,7 @@
       pip:
         executable: "pip3"
         name: "{{ packages.centos.pip3 }}"
-        extra_args: "--proxy http://proxy.lbs.alcatel-lucent.com:8000 --ignore-installed PyYAML"
+        extra_args: "--proxy http://135.245.48.34:8000 --ignore-installed PyYAML"
         state: present
     - name: Install TPM emulator packages
       when: tpm_emulator|default(false)|bool
